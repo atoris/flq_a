@@ -18,8 +18,8 @@
 -->
 <application xmlns="http://ns.adobe.com/air/application/22.0">
   <id>alsial.game.footballlogoquiz</id>
-  <versionNumber>0.4.1</versionNumber>
-  <versionLabel/>
+  <versionNumber>0.4.41</versionNumber>
+  <versionLabel></versionLabel>
   <filename>Football logo quiz</filename>
   <description/>
   <name>Football logo quiz</name>
@@ -423,9 +423,75 @@
   
   
   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <extensions>
     <extensionID>com.appodeal.aneplugin</extensionID>
     <extensionID>com.appodeal.playservicesane</extensionID>
     <extensionID>com.appodeal.supportane</extensionID>
+    <extensionID>com.devactionscript.googleanalytics</extensionID>
   </extensions>
 </application>

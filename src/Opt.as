@@ -27,7 +27,11 @@ package src
 		
 		private static var _score:int = 0;
 		
-		private static var _numCage:int=2;
+		private static var _numCage:int = 2;
+		
+		private static var _time:int;
+		private static var _numRec:int = 10;
+		private static var _numVideo:int = 5;
 		public function Opt() 
 		{
 			
@@ -106,6 +110,36 @@ package src
 		static public function set numCage(value:int):void 
 		{
 			_numCage = value;
+		}
+		
+		static public function get time():int 
+		{
+			return _time;
+		}
+		
+		static public function set time(value:int):void 
+		{
+			_time = value;
+		}
+		
+		static public function get numRec():int 
+		{
+			return _numRec;
+		}
+		
+		static public function set numRec(value:int):void 
+		{
+			_numRec = value;
+		}
+		
+		static public function get numVideo():int 
+		{
+			return _numVideo;
+		}
+		
+		static public function set numVideo(value:int):void 
+		{
+			_numVideo = value;
 		}
 		
 	}

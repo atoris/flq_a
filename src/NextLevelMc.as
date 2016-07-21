@@ -10,6 +10,19 @@
 		private var _gameOver:Boolean;
 		public function NextLevelMc() {
 			// constructor code
+			GoogleAnalitics.getTrackView("ПЕРЕХОД МЕЖДУ УРОВНЕЙ");
+			if (Opt.numRec!=1) 
+			{
+				Opt.numRec--;
+			}else{
+				Opt.numRec = 10;
+				AdMobClass.showBannerInterstitial();
+			}
+			
+			
+			topMenu.timermc.txt1.text = String(Opt.time);
+			topMenu.timermc.txt2.text = String(Opt.time);
+			
 			scaleX = scaleY = Opt.scale;
 			messageBox.visible = false;
 			x = Opt.SW / 2;
@@ -86,7 +99,7 @@
 		
 		public function init(bmp:Bitmap,num:int,str:String,name:String):void{			
 			cagebg.addChild(bmp);
-			
+			TimerCl.pause();
 			topMenu.txt.text = String(Opt.score);
 			topMenu.txt2.text = String(Opt.score);
 			txt_name.text = name;
@@ -100,9 +113,15 @@
 			}else{
 				_gameOver = true;
 				gotoAndStop(2);
-				Opt.score = 0;
+				
 				txt1.text = "+ 0" ;
 				txt2.text = "+ 0" ;
+				TimerCl.destroy();
+				var gameOverMc:GameOverMc = new GameOverMc();
+				addChild(gameOverMc);
+				gameOverMc.txt.text = "Ваш счет: "+String(Opt.score);
+				AsAnimations.animBackMenuOn(gameOverMc);
+				Opt.score = 0;
 				//txt_info.text = "CELLS: " + String(num) + "/"+String((Opt.numCage*Opt.numCage))+"\n" + "SCORE + 0";				
 			}
 			//topMenu.txt.text = "SCORE: "+String(Opt.score);

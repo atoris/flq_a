@@ -9,6 +9,7 @@
 		private var _gameMc:GameMc;
 		public function MenuMc() {
 			// constructor code
+			GoogleAnalitics.getTrackView("МЕНЮ");
 			scaleX = scaleY = Opt.scale;
 			x=Opt.SW/2;
 			y = Opt.SH / 2;
@@ -16,13 +17,13 @@
 			btn_2.addEventListener(MouseEvent.CLICK, cMouse);
 			btn_3.addEventListener(MouseEvent.CLICK, cMouse);
 			
-			Opt.btnLNG(btn_1,"ПРОСТО");
-			Opt.btnLNG(btn_2,"СЛОЖНО");
-			Opt.btnLNG(btn_3,"ОЧЕНЬ СЛОЖНО");
+			Opt.btnLNG(btn_1,"САЛАГА");
+			Opt.btnLNG(btn_2,"ФУТБОЛИСТ");
+			Opt.btnLNG(btn_3,"ТРЕНЕР");
 			
 			AsAnimations.onBtn([btn_1, btn_2, btn_3]);
-			
-			
+			TimerCl.destroy();
+			Opt.time = 60;
 		}
 		
 		private function cMouse(e:MouseEvent):void 

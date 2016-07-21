@@ -42,8 +42,10 @@
 		
 		
 		public function GameMc() {
+			GoogleAnalitics.getTrackView("ИГРА");
 			TweenPlugin.activate([TintPlugin]);
-			
+			topMenu.timermc.txt1.text = String(Opt.time);
+			topMenu.timermc.txt2.text = String(Opt.time);
 			scaleX = scaleY = Opt.scale;
 			x=Opt.SW/2;
 			y=Opt.SH/2;
@@ -90,6 +92,7 @@
 			if (e.keyCode==Keyboard.BACK) 
 			{
 				e.preventDefault();
+				TimerCl.pause();
 				messageBox.visible = true;
 				AsAnimations.animBackMenuOn(messageBox);
 			}
@@ -100,8 +103,10 @@
 		{
 			if (e.currentTarget==messageBox.btn_ok) 
 			{
+				
 				removeAll();
 			}else{
+				TimerCl.play();
 				AsAnimations.animBackMenuOff(messageBox);
 				//messageBox.visible = false;
 			}
@@ -112,6 +117,7 @@
 			if (e.currentTarget==topMenu.btn_menu) 
 			{
 				messageBox.visible = true;
+				TimerCl.pause();
 				AsAnimations.animBackMenuOn(messageBox);
 				
 			}else{
@@ -158,6 +164,7 @@
 				//_arrBtn[i].txt.text = _questions.arrQuestion[i];
 			}
 			AsAnimations.onBtn(_arrBtn);
+			
 			start();
 		}
 		private function btnRename():void 
@@ -177,6 +184,11 @@
 		
 		private function start():void 
 		{
+			//TimerCl.start(topMenu.timermc);
+			//var _tim:TimerCl = new TimerCl(Opt.time);
+			TimerCl.start(topMenu.timermc);
+			TimerCl.play();
+			//_tim.start(topMenu.timermc);
 			for (var i:int = 0; i < _arrBtn.length; i++) 
 			{
 				_arrBtn[i].addEventListener(MouseEvent.CLICK,cBtn);
@@ -204,7 +216,7 @@
 				
 			}else {
 				
-				Opt.score = 0;
+				//Opt.score = 0;
 				//topMenu.txt.text = "SCORE: " + String(Opt.score);
 				_nextLevelMc.init(_image,_numCell,"N",_questions.trueQuestion);
 				
