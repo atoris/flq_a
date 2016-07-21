@@ -51,7 +51,7 @@ package src
 			lbl = btn.getChildAt(i) as TextField;
 			lbl.text = s;
 			
-			trace(((b.upState as DisplayObjectContainer).getChildAt(i) as TextField).text,((b.overState as DisplayObjectContainer).getChildAt(i) as TextField).text,((b.downState as DisplayObjectContainer).getChildAt(i) as TextField).text);
+			//trace(((b.upState as DisplayObjectContainer).getChildAt(i) as TextField).text,((b.overState as DisplayObjectContainer).getChildAt(i) as TextField).text,((b.downState as DisplayObjectContainer).getChildAt(i) as TextField).text);
 			/*
 			btn = b.hitState as DisplayObjectContainer;
 			lbl = btn.getChildAt(i) as TextField;

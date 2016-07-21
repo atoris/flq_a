@@ -20,32 +20,11 @@
 			Opt.btnLNG(btn_2,"СЛОЖНО");
 			Opt.btnLNG(btn_3,"ОЧЕНЬ СЛОЖНО");
 			
-			btn_1ad.addEventListener(MouseEvent.CLICK, cMouseAd);
-			btn_2ad.addEventListener(MouseEvent.CLICK, cMouseAd);
-			btn_3ad.addEventListener(MouseEvent.CLICK, cMouseAd);
-			btn_4ad.addEventListener(MouseEvent.CLICK, cMouseAd);
-		}
-		private function cMouseAd(e:MouseEvent):void 
-		{
-			AdMobClass.hide();
-			if (e.currentTarget==btn_1ad) 
-			{
-				AdMobClass.showBanner();
-			}
-			if (e.currentTarget==btn_2ad) 
-			{
-				AdMobClass.showBannerInterstitial();
-			}
+			AsAnimations.onBtn([btn_1, btn_2, btn_3]);
 			
-			if (e.currentTarget==btn_3ad) 
-			{
-				AdMobClass.showRewardedVideo();
-			}
-			if (e.currentTarget==btn_4ad) 
-			{
-				AdMobClass.showNonSkippableVideo();
-			}
+			
 		}
+		
 		private function cMouse(e:MouseEvent):void 
 		{
 			if (e.currentTarget==btn_1){
@@ -61,10 +40,12 @@
 			btn_2.removeEventListener(MouseEvent.CLICK, cMouse);
 			btn_3.removeEventListener(MouseEvent.CLICK, cMouse);
 			
-			Opt.container.removeChild(this);
+			//Opt.container.removeChild(this);
 			_gameMc=new GameMc();
 			//_gameMc.arrImage=_arrImage;
 			Opt.container.addChild(_gameMc);
+			//AsAnimations.restartBtn([btn_1, btn_2, btn_3]);
+			AsAnimations.transitionObj(this,_gameMc,.3);
 			
 		}
 	}

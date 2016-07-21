@@ -30,7 +30,8 @@
 				removeAll();
 				
 			}else{
-				messageBox.visible = false;
+				AsAnimations.animBackMenuOff(messageBox);
+				//messageBox.visible = false;
 			}
 		}
 		
@@ -43,13 +44,13 @@
 					nextBtn.removeEventListener(MouseEvent.CLICK, cMouse);
 					topMenu.btn_sound.removeEventListener(MouseEvent.CLICK, cMouseTopMenu);
 					topMenu.btn_menu.removeEventListener(MouseEvent.CLICK, cMouseTopMenu);
-					Opt.container.removeChild(this);
+					//Opt.container.removeChild(this);
 					_gameMc = new GameMc();
 					Opt.container.addChild(_gameMc);
+					AsAnimations.transitionObj(this,_gameMc);
 				}else{
 					removeAll();					
-				}
-				
+				}				
 			}
 		}
 		private function cMouseTopMenu(e:MouseEvent):void 
@@ -59,7 +60,7 @@
 				if (!_gameOver) 
 				{
 					messageBox.visible = true;
-					
+					AsAnimations.animBackMenuOn(messageBox);
 				}else{
 					removeAll();
 				}
@@ -76,36 +77,40 @@
 			topMenu.btn_sound.removeEventListener(MouseEvent.CLICK, cMouseTopMenu);
 			topMenu.btn_menu.removeEventListener(MouseEvent.CLICK, cMouseTopMenu);
 			nextBtn.removeEventListener(MouseEvent.CLICK, cMouse);
-			Opt.container.removeChild(this);
-			
-			Opt.container.addChild(new MenuMc());
+			//Opt.container.removeChild(this);
+			var men:MenuMc = new MenuMc();
+			Opt.container.addChild(men);
+			AsAnimations.transitionObj(this,men);
 			Opt.score = 0;
 		}
 		
 		public function init(bmp:Bitmap,num:int,str:String,name:String):void{			
 			cagebg.addChild(bmp);
 			
-			topMenu.txt.text = "SCORE: " + String(Opt.score);
+			topMenu.txt.text = String(Opt.score);
+			topMenu.txt2.text = String(Opt.score);
 			txt_name.text = name;
 			if (str=="Y") 
 			{
 				_gameOver = false;
-				txt_info.text = "CELLS: " + String(num) + "/"+String((Opt.numCage*Opt.numCage))+"\n" + "SCORE + " + String((Opt.numCage*Opt.numCage) - num);
+				txt1.text = "+ " + String((Opt.numCage * Opt.numCage) - num);
+				txt2.text = "+ " + String((Opt.numCage * Opt.numCage) - num);
+				//txt_info.text = "CELLS: " + String(num) + "/"+String((Opt.numCage*Opt.numCage))+"\n" + "SCORE + " + String((Opt.numCage*Opt.numCage) - num);
 				gotoAndStop(1);
 			}else{
 				_gameOver = true;
 				gotoAndStop(2);
 				Opt.score = 0;
-				txt_info.text = "CELLS: " + String(num) + "/"+String((Opt.numCage*Opt.numCage))+"\n" + "SCORE + 0";				
+				txt1.text = "+ 0" ;
+				txt2.text = "+ 0" ;
+				//txt_info.text = "CELLS: " + String(num) + "/"+String((Opt.numCage*Opt.numCage))+"\n" + "SCORE + 0";				
 			}
 			//topMenu.txt.text = "SCORE: "+String(Opt.score);
 			
 		}
 		public function playMc(str:String):void{
 			
-			//trace(Opt.score,"SCORE");
 			
-			//trace(str);
 		}
 	}
 	

@@ -32,7 +32,7 @@
 			sheetColumns = tileBitmap.bitmapData.width / tileSize;
 			pt = new Point(0, 0);
 			
-			//trace();
+			
 		}
 		public function getBitmap(id:int):Bitmap
         {
@@ -56,7 +56,6 @@
 					
 					var rect:Rectangle = new Rectangle(i * w, j * h, w, h);
 					
-					//trace(rect.x,rect.y);
 					bmp = new Bitmap(new BitmapData(w, h, true, 0));
 					bmp.bitmapData.copyPixels (sourceBitmapData.bitmapData, rect,new Point(0,0));
 					//this.addChild(bmp);

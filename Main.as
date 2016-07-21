@@ -7,7 +7,7 @@
 	import flash.events.MouseEvent;
 	import flash.display.StageScaleMode;
 	import flash.display.StageAlign;
-	import com.devactionscript.googleanalytics.FreeAneGoogleAnalytics;
+	//import com.devactionscript.googleanalytics.FreeAneGoogleAnalytics;
 	public class Main extends MovieClip {
 		
 		private var _menuMc:MenuMc;
@@ -16,11 +16,11 @@
 		private var _question:Question;
 		private var _debugName:String;
 		private var _cont:Sprite = new Sprite();
-		private var _googleAnalyticsAne:FreeAneGoogleAnalytics = FreeAneGoogleAnalytics.getInstance();	
+		//private var _googleAnalyticsAne:FreeAneGoogleAnalytics = FreeAneGoogleAnalytics.getInstance();	
 		public function Main() {
 					
-			_googleAnalyticsAne.trakingId = "UA-81011789-1";
-			_googleAnalyticsAne.trackView("/YOUR_VIEW");
+			//_googleAnalyticsAne.trakingId = "UA-81011789-1";
+			//_googleAnalyticsAne.trackView("/YOUR_VIEW");
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
 			stage.addChild(_cont);
@@ -72,7 +72,7 @@
 			
 			Opt.scale = Math.max(Opt.SW / bg.width, Opt.SH / bg.height);
 			//bg.scaleX = bg.scaleY = Opt.scale;
-			trace(Opt.scale,"SCALE");
+			
 		}
 		
 	}
