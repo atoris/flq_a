@@ -9,7 +9,7 @@
 		
 		public function GameOverMc() {
 			// constructor code
-			GoogleAnalitics.getTrackView("ПРОИГРЫШ");
+			//GoogleAnalitics.getTrackView("ПРОИГРЫШ");
 			//scaleX = scaleY = Opt.scale;
 			
 			//x = Opt.SW / 2;

@@ -16,6 +16,7 @@ package src
 		private static var _tim:Timer ;
 		private static var _tNum:int;
 		private static var _obJ:MovieClip;
+		private static var _bGameOver:Boolean;
 		public function TimerCl() 
 		{
 			
@@ -26,6 +27,7 @@ package src
 		 */
 		public static function start(obj:MovieClip):void 
 		{
+			
 			_obJ = obj;
 			if (_tim==null) 
 			{
@@ -35,22 +37,35 @@ package src
 				_tim.addEventListener(TimerEvent.TIMER_COMPLETE, tEventComplete);
 				//_tim.start();
 			}
-			
+			_bGameOver = false;
 		}
 		
 		static private function tEventComplete(e:TimerEvent):void 
 		{
-			trace(Opt.container.numChildren,"GAME OVER");
 			
-			//Opt.container.removeChildAt(0);
-			var menu:MenuMc = new MenuMc();
-			Opt.container.addChild(menu);
-			AsAnimations.transitionObj(Opt.container.getChildAt(0),menu);
+			_tim.removeEventListener(TimerEvent.TIMER, tEvent);
+			_tim.removeEventListener(TimerEvent.TIMER_COMPLETE, tEventComplete);
+			//trace(Opt.trueQuestion,Opt.image);
+			//Opt.removeAll();
+			_bGameOver = true;
+			//var menu:MenuMc = new MenuMc();
+			//Opt.container.addChild(menu);
+			
+			var _nextLevelMc:NextLevelMc = new NextLevelMc();
+			_nextLevelMc.visible = true;
+			Opt.container.addChild(_nextLevelMc);
+			//SaveInfo.save(SaveInfo.RECORD, Opt.score);
+			_nextLevelMc.init(Opt.image,0,"N",Opt.trueQuestion);
+			AsAnimations.transitionObj(Opt.container.getChildAt(0),_nextLevelMc);
 		//	trace("GAME OVER");
 		}
 		public static function pause():void 
 		{
-			_tim.stop();
+			if (_tim!=null) 
+			{
+				_tim.stop();
+			}
+			
 		}
 		public static function play():void 
 		{
@@ -95,6 +110,11 @@ package src
 		static public function get tim():Timer 
 		{
 			return _tim;
+		}
+		
+		static public function get bGameOver():Boolean 
+		{
+			return _bGameOver;
 		}
 		
 	}

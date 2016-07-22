@@ -42,7 +42,18 @@
 		
 		
 		public function GameMc() {
-			GoogleAnalitics.getTrackView("ИГРА");
+			//GoogleAnalitics.getTrackView("ИГРА");
+			AsSoundClass.init();
+			if (!AsSoundClass.bSound) 
+			{
+				topMenu.btn_sound.visible = false;
+				topMenu.btn_sound_off.visible = true;
+			}else{
+				topMenu.btn_sound.visible = true;
+				topMenu.btn_sound_off.visible = false;
+			}
+			
+			
 			TweenPlugin.activate([TintPlugin]);
 			topMenu.timermc.txt1.text = String(Opt.time);
 			topMenu.timermc.txt2.text = String(Opt.time);
@@ -74,8 +85,9 @@
 			_questions.getLogoNum();
 			_arrBmp = _cutTile.getMinBitmap(arrImage[_questions.numQuestion], new Point(Opt.numCage,Opt.numCage), _wCage, _hCage);
 			_image = arrImage[_questions.numQuestion];
-			
+			Opt.image = _image;
 			topMenu.btn_sound.addEventListener(MouseEvent.CLICK, cMouseTopMenu);
+			topMenu.btn_sound_off.addEventListener(MouseEvent.CLICK, cMouseTopMenu);
 			topMenu.btn_menu.addEventListener(MouseEvent.CLICK, cMouseTopMenu);
 			messageBox.btn_ok.addEventListener(MouseEvent.CLICK, cMouseMessageBox);
 			messageBox.btn_no.addEventListener(MouseEvent.CLICK, cMouseMessageBox);
@@ -120,7 +132,10 @@
 				TimerCl.pause();
 				AsAnimations.animBackMenuOn(messageBox);
 				
-			}else{
+			}
+			if (e.currentTarget==topMenu.btn_sound_off || e.currentTarget==topMenu.btn_sound) 
+			{
+				AsSoundClass.setResult(topMenu.btn_sound_off,topMenu.btn_sound);
 				trace("SOUND");
 			}
 		}
@@ -180,6 +195,7 @@
 			{
 				Opt.btnLNG(_arrBtn[i], _questions.arrQuestion[i]);
 			}
+			
 		}
 		
 		private function start():void 
@@ -188,6 +204,7 @@
 			//var _tim:TimerCl = new TimerCl(Opt.time);
 			TimerCl.start(topMenu.timermc);
 			TimerCl.play();
+			Opt.trueQuestion = _questions.trueQuestion;
 			//_tim.start(topMenu.timermc);
 			for (var i:int = 0; i < _arrBtn.length; i++) 
 			{
@@ -199,29 +216,30 @@
 		{
 			if (_nextLevelMc==null) 
 			{
-				_nextLevelMc = new NextLevelMc();
-				_nextLevelMc.visible = true;
-				Opt.container.addChild(_nextLevelMc);
+				if (!TimerCl.bGameOver) 
+				{
+					_nextLevelMc = new NextLevelMc();
+					_nextLevelMc.visible = true;
+					Opt.container.addChild(_nextLevelMc);
+					
+					
+					if (Opt.getBtnLabelText(e.target as SimpleButton)==_questions.trueQuestion) 
+					{
 				
-			}
-			
-			if (Opt.getBtnLabelText(e.target as SimpleButton)==_questions.trueQuestion) 
-			{
-				
-				Opt.score+= (Opt.numCage*Opt.numCage) - _numCell+1;
-				//topMenu.txt.text = "SCORE: " + String(Opt.score);
-				_nextLevelMc.init(_image,_numCell-1,"Y",_questions.trueQuestion);
-				//btnRename();
+						Opt.score+= (Opt.numCage*Opt.numCage) - _numCell+1;
+						//topMenu.txt.text = "SCORE: " + String(Opt.score);
+						_nextLevelMc.init(_image,_numCell-1,"Y",_questions.trueQuestion);
+						//btnRename();
 				
 				
-			}else {
+					}else {
 				
-				//Opt.score = 0;
-				//topMenu.txt.text = "SCORE: " + String(Opt.score);
-				_nextLevelMc.init(_image,_numCell,"N",_questions.trueQuestion);
+						//Opt.score = 0;
+						//topMenu.txt.text = "SCORE: " + String(Opt.score);
+						_nextLevelMc.init(_image,_numCell,"N",_questions.trueQuestion);
 				
-				//btnRename();
-			}
+						//btnRename();
+					}
 			
 			for (var i:int = 0; i < _arrBtn.length; i++) 
 			{
@@ -237,6 +255,13 @@
 			//AsAnimations.restartBtn(_arrBtn);
 			AsAnimations.transitionObj(this,_nextLevelMc,.3);
 			//Opt.container.removeChild(this);
+					
+				}
+				
+				
+			}
+			
+			
 		}
 		
 		

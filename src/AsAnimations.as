@@ -91,7 +91,15 @@ package src
 		
 		static private function removeObj(obj:DisplayObject):void 
 		{
-			Opt.container.removeChild(obj);
+			//trace("removeObj",obj);
+			if (obj!=null) 
+			{
+				if(obj.parent) {
+					obj.parent.removeChild(obj);
+				}
+				//Opt.container.removeChild(obj);
+			}
+			
 		}
 		
 	}

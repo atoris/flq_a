@@ -1,9 +1,11 @@
 package src 
 {
+	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	import flash.display.Stage;
 	import flash.display.SimpleButton;
 	import flash.display.DisplayObjectContainer;
+	import flash.events.Event;
 	import flash.text.TextField;
 	
 	/**
@@ -32,6 +34,8 @@ package src
 		private static var _time:int;
 		private static var _numRec:int = 10;
 		private static var _numVideo:int = 5;
+		private static var _trueQuestion:String;
+		private static var _image:Bitmap;
 		public function Opt() 
 		{
 			
@@ -61,7 +65,15 @@ package src
 			lbl = btn.getChildAt(i) as TextField;
 			lbl.text = s;*/
 		}
-		
+		public static function removeAll():void 
+		{
+			TimerCl.destroy();
+			for (var i:int = 0; i < _container.numChildren; i++) 
+			{
+				_container.removeChildAt(i);
+			}
+			
+		}
 		public static function getBtnLabelText(b:SimpleButton):String{
 			btn = b.upState as DisplayObjectContainer;
 			lbl = btn.getChildAt(1) as TextField;
@@ -140,6 +152,26 @@ package src
 		static public function set numVideo(value:int):void 
 		{
 			_numVideo = value;
+		}
+		
+		static public function get trueQuestion():String 
+		{
+			return _trueQuestion;
+		}
+		
+		static public function set trueQuestion(value:String):void 
+		{
+			_trueQuestion = value;
+		}
+		
+		static public function get image():Bitmap 
+		{
+			return _image;
+		}
+		
+		static public function set image(value:Bitmap):void 
+		{
+			_image = value;
 		}
 		
 	}

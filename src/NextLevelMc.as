@@ -10,16 +10,27 @@
 		private var _gameOver:Boolean;
 		public function NextLevelMc() {
 			// constructor code
-			GoogleAnalitics.getTrackView("ПЕРЕХОД МЕЖДУ УРОВНЕЙ");
+			//GoogleAnalitics.getTrackView("ПЕРЕХОД МЕЖДУ УРОВНЕЙ");
 			if (Opt.numRec!=1) 
 			{
 				Opt.numRec--;
 			}else{
 				Opt.numRec = 10;
-				AdMobClass.showBannerInterstitial();
+				if (!TimerCl.bGameOver) 
+				{
+					AdMobClass.showBannerInterstitial();
+				}
+				
 			}
-			
-			
+			AsSoundClass.init();
+			if (!AsSoundClass.bSound) 
+			{
+				topMenu.btn_sound.visible = false;
+				topMenu.btn_sound_off.visible = true;
+			}else{
+				topMenu.btn_sound.visible = true;
+				topMenu.btn_sound_off.visible = false;
+			}
 			topMenu.timermc.txt1.text = String(Opt.time);
 			topMenu.timermc.txt2.text = String(Opt.time);
 			
@@ -29,6 +40,7 @@
 			y = Opt.SH / 2;
 			nextBtn.addEventListener(MouseEvent.CLICK, cMouse);
 			topMenu.btn_sound.addEventListener(MouseEvent.CLICK, cMouseTopMenu);
+			topMenu.btn_sound_off.addEventListener(MouseEvent.CLICK, cMouseTopMenu);
 			topMenu.btn_menu.addEventListener(MouseEvent.CLICK, cMouseTopMenu);
 			messageBox.btn_ok.addEventListener(MouseEvent.CLICK, cMouseMessageBox);
 			messageBox.btn_no.addEventListener(MouseEvent.CLICK, cMouseMessageBox);
@@ -38,8 +50,7 @@
 		private function cMouseMessageBox(e:MouseEvent):void 
 		{
 			if (e.currentTarget==messageBox.btn_ok) 
-			{
-				
+			{				
 				removeAll();
 				
 			}else{
@@ -78,8 +89,10 @@
 					removeAll();
 				}
 				
-			}else{
-				trace("SOUND");
+			}
+			if (e.currentTarget==topMenu.btn_sound_off || e.currentTarget==topMenu.btn_sound) 
+			{
+				AsSoundClass.setResult(topMenu.btn_sound_off,topMenu.btn_sound);				
 			}
 		}
 		
@@ -121,6 +134,8 @@
 				addChild(gameOverMc);
 				gameOverMc.txt.text = "Ваш счет: "+String(Opt.score);
 				AsAnimations.animBackMenuOn(gameOverMc);
+				
+				SaveInfo.save(SaveInfo.RECORD, Opt.score);
 				Opt.score = 0;
 				//txt_info.text = "CELLS: " + String(num) + "/"+String((Opt.numCage*Opt.numCage))+"\n" + "SCORE + 0";				
 			}

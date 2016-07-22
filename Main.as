@@ -1,79 +1,37 @@
 ﻿package  {
 	
 	import flash.display.MovieClip;
-	import src.*;
-	import flash.display.Sprite;
-	import flash.events.Event;
-	import flash.events.MouseEvent;
+	
 	import flash.display.StageScaleMode;
 	import flash.display.StageAlign;
-	
+	import flash.display.Loader;
+	import flash.net.URLRequest;
+	import com.appodeal.aneplugin.*;
 	public class Main extends MovieClip {
 		
-		private var _menuMc:MenuMc;
-		private var _cutTile:CutTile;
-		private var _arrImage:Array;
-		private var _question:Question;
-		private var _debugName:String;
-		private var _cont:Sprite = new Sprite();
-		
+		private var _scale:Number;
+		private var _sw:Number;
+		private var _sh:Number;
 		public function Main() {
-					
-			GoogleAnalitics.init();
+			// constructor code
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
-			stage.addChild(_cont);
-			Opt.container = _cont;
 			
-			//new Opt();
-			_debugName = Opt.DEBUG_ANDROID;
-			onResize();
-			//Opt.container.scaleX = Opt.container.scaleY = Opt.scale();
-			new LogoInfoArr();
-			_arrImage = new Array();
-			_question = new Question();
-			_cutTile = new CutTile();
-			var mc:MovieClip=new MovieClip();
-			//mc.scaleX
-			for (var i:int = 0; i < 36; i++) 
-			{
-				_arrImage.push(_cutTile.getBitmap(i));				
-				
-			}
-			//addChild(_arrImage[12]);
-			Opt.arrImage = _arrImage;
+			_sw = stage.fullScreenWidth;
+			_sh = stage.fullScreenHeight;
 			
-			AdMobClass.initAD();
-			_menuMc = new MenuMc();
-			Opt.container.addChild(_menuMc);
-			Opt.numRec = 10;
+			_scale = Math.max(_sw / bg.width, _sh / bg.height);
 			
-			AdMobClass.showBanner();
+			logo.scaleX = logo.scaleY = _scale;
 			
-			//addChild(_cutTile.getBitmap(3));
-			//addChild(_cutTile.Draw(10));
+			
+			var myLoader:Loader = new Loader();                     // create a new instance of the Loader class
+			var url:URLRequest = new URLRequest("Football logo quiz.swf"); // in this case both SWFs are in the same folder 
+			myLoader.load(url); 
+			//myLoader.init(_sw,_sh,_scale);
+			// load the SWF file
+			addChild(myLoader); 
 		}
-		
-		
-		
-		private function onResize():void 
-		{
-			if (_debugName==Opt.DEBUG_ANDROID) 
-			{
-				Opt.SW = stage.fullScreenWidth;
-				Opt.SH = stage.fullScreenHeight;
-				//Options.SH_CAGE = Options.SH - 100;
-			}else {
-				Opt.SW = stage.stageWidth; // а у тебя должно быть stage.fullScreenWidth
-				Opt.SH = stage.stageHeight; // и stage.fullScreenHeight
-				//Options.SH_CAGE = Options.SH - 100;
-			}
-			
-			Opt.scale = Math.max(Opt.SW / bg.width, Opt.SH / bg.height);
-			//bg.scaleX = bg.scaleY = Opt.scale;
-			
-		}
-		
 	}
 	
 }
