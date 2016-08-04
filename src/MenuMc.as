@@ -66,11 +66,10 @@
 				_gameMc = new GameMc();
 				removeListener(_gameMc);
 			}
-			trace(e.currentTarget.name,Opt.numCage);
 			if (e.currentTarget==btn_sound_off || e.currentTarget==btn_sound) 
 			{
 				AsSoundClass.setResult(btn_sound_off,btn_sound);
-				trace("SOUND");
+				
 			}
 			if (e.currentTarget==btn_rec) 
 			{

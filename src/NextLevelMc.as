@@ -111,6 +111,8 @@
 		}
 		
 		public function init(bmp:Bitmap,num:int,str:String,name:String):void{			
+			
+			
 			cagebg.addChild(bmp);
 			TimerCl.pause();
 			topMenu.txt.text = String(Opt.score);

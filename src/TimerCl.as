@@ -17,6 +17,8 @@ package src
 		private static var _tNum:int;
 		private static var _obJ:MovieClip;
 		private static var _bGameOver:Boolean;
+		private static var _arrBtn:Array;
+		private static var _btnAnimate:Boolean = false;
 		public function TimerCl() 
 		{
 			
@@ -50,7 +52,7 @@ package src
 			_bGameOver = true;
 			//var menu:MenuMc = new MenuMc();
 			//Opt.container.addChild(menu);
-			
+			_btnAnimate = false;
 			var _nextLevelMc:NextLevelMc = new NextLevelMc();
 			_nextLevelMc.visible = true;
 			Opt.container.addChild(_nextLevelMc);
@@ -89,7 +91,14 @@ package src
 		{
 			
 			_tNum--;
-			
+			if (_tNum<=10 && !_btnAnimate) 
+			{
+				_btnAnimate = true;
+				AsAnimations.shake(_arrBtn[0]);	
+				AsAnimations.shake(_arrBtn[1]);	
+				AsAnimations.shake(_arrBtn[2]);	
+				AsAnimations.shake(_arrBtn[3]);	
+			}
 			Opt.time = _tNum;
 			//trace(_obJ.txt1);
 			_obJ.txt1.text = String(_tNum);
@@ -115,6 +124,16 @@ package src
 		static public function get bGameOver():Boolean 
 		{
 			return _bGameOver;
+		}
+		
+		static public function get arrBtn():Array 
+		{
+			return _arrBtn;
+		}
+		
+		static public function set arrBtn(value:Array):void 
+		{
+			_arrBtn = value;
 		}
 		
 	}

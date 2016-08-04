@@ -36,6 +36,7 @@ package src
 		private static var _numVideo:int = 5;
 		private static var _trueQuestion:String;
 		private static var _image:Bitmap;
+		private static var _arrLigiInfo:Array;
 		public function Opt() 
 		{
 			
@@ -172,6 +173,16 @@ package src
 		static public function set image(value:Bitmap):void 
 		{
 			_image = value;
+		}
+		
+		static public function get arrLigiInfo():Array 
+		{
+			return _arrLigiInfo;
+		}
+		
+		static public function set arrLigiInfo(value:Array):void 
+		{
+			_arrLigiInfo = value;
 		}
 		
 	}

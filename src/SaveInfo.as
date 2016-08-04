@@ -44,7 +44,6 @@ package src
 				soRec.flush();
 			}
 			
-			trace("Вы сохранили "+n+" | с аргументом: "+arg,soRec.data.rec,soRec.data.sound is Boolean);
 		}
 		public static function load(n:String):String 
 		{
@@ -57,7 +56,6 @@ package src
 			{
 				str=soRec.data.sound		
 			}
-			trace("Вы pfuhepbkb "+n+" | с аргументом: "+str);
 			return str;
 		}
 	}

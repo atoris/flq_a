@@ -83,7 +83,9 @@
 			topMenu.txt.text = String(Opt.score);
 			topMenu.txt2.text = String(Opt.score);
 			_questions.getLogoNum();
+			
 			_arrBmp = _cutTile.getMinBitmap(arrImage[_questions.numQuestion], new Point(Opt.numCage,Opt.numCage), _wCage, _hCage);
+			
 			_image = arrImage[_questions.numQuestion];
 			Opt.image = _image;
 			topMenu.btn_sound.addEventListener(MouseEvent.CLICK, cMouseTopMenu);
@@ -91,10 +93,21 @@
 			topMenu.btn_menu.addEventListener(MouseEvent.CLICK, cMouseTopMenu);
 			messageBox.btn_ok.addEventListener(MouseEvent.CLICK, cMouseMessageBox);
 			messageBox.btn_no.addEventListener(MouseEvent.CLICK, cMouseMessageBox);
-			
+			TestSpeedFunction.start();
 			addBmpCage();
+			TestSpeedFunction.stop();
 			addBtn();
 			setChildIndex(messageBox, numChildren - 1);
+			
+			if (TimerCl.tNum<=10 ) 
+			{
+				for (var i:int = 0; i < _arrBtn.length; i++) 
+				{
+					AsAnimations.shake(_arrBtn[i],TimerCl.tNum*1000);	
+				}
+				
+			}
+			
 			
 			NativeApplication.nativeApplication.addEventListener(KeyboardEvent.KEY_DOWN,checkKeypress);
 		}
@@ -135,8 +148,8 @@
 			}
 			if (e.currentTarget==topMenu.btn_sound_off || e.currentTarget==topMenu.btn_sound) 
 			{
-				AsSoundClass.setResult(topMenu.btn_sound_off,topMenu.btn_sound);
-				trace("SOUND");
+				AsSoundClass.setResult(topMenu.btn_sound_off, topMenu.btn_sound);
+				
 			}
 		}
 		
@@ -175,8 +188,6 @@
 			for (var i:int = 0; i < 4; i++) 
 			{
 				Opt.btnLNG(_arrBtn[i], _questions.arrQuestion[i]);
-				//_arrBtn[i].name = _questions.arrQuestion[i];
-				//_arrBtn[i].txt.text = _questions.arrQuestion[i];
 			}
 			AsAnimations.onBtn(_arrBtn);
 			
@@ -188,8 +199,8 @@
 			_arrBmp = new Array();
 			
 			_arrBmp = _cutTile.getMinBitmap(arrImage[_questions.numQuestion], new Point(Opt.numCage, Opt.numCage), _wCage, _hCage);
-			
-			addBmpCage();
+			//addChild(_arrBmp[0]);
+			//addBmpCage();
 			
 			for (var i:int = 0; i < _arrBtn.length; i++) 
 			{
@@ -206,6 +217,7 @@
 			TimerCl.play();
 			Opt.trueQuestion = _questions.trueQuestion;
 			//_tim.start(topMenu.timermc);
+			TimerCl.arrBtn = _arrBtn;
 			for (var i:int = 0; i < _arrBtn.length; i++) 
 			{
 				_arrBtn[i].addEventListener(MouseEvent.CLICK,cBtn);
@@ -330,20 +342,17 @@
 			}
 		}
 		private function addBmpCage():void{
-			var arr:Array = new Array();
-			for (var i:int = 0; i < _arrBmp.length; i++) {
-				arr.push(i);
-				
-			}
+			
 			_arrBmp.sort(Opt.randomize);
 			
-			
+			//trace("addBmpCage",_arrCage[0].numChildren,_arrBmp.length);
 			for (var k:int = 0; k < _arrBmp.length; k++) 
 			{
+				/*
 				if (_arrCage[k].numChildren==2) 
 				{
 					_arrCage[k].removeChildAt(1);
-				}
+				}*/
 				//_arrBmp[k].rotationZ = int(Math.random() * 3) * 90;
 				_arrBmp[k].x = - _wCage / 2;
 				_arrBmp[k].y = - _hCage / 2;

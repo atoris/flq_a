@@ -9,6 +9,9 @@ package src
 	import flash.display.DisplayObject;
 	import com.greensock.*;
 	import com.greensock.easing.*;
+	import flash.display.Sprite;
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
 	public class AsAnimations 
 	{
 		
@@ -57,8 +60,7 @@ package src
 			}
 			
 			//var tl:TweenLite = new TweenLite(arrObj[i], .2, {x:xPos, scaleX:1, scaleY:1, alpha:1, ease:Back.easeOut } );
-			
-			//trace(getAnim);	
+				
 		}
 		public static function restartBtn(arrObj:Array):void{
 			if (timeline!=null) 
@@ -76,7 +78,7 @@ package src
 		
 		
 		public static function animBackMenuOn(obj:DisplayObject, delay:Number = .3):void{
-			//trace("xxx");
+		
 			obj.alpha = 0;
 			//obj.scaleX = obj.scaleY = 0;
 			TweenMax.to(obj, delay, {alpha:1});
@@ -84,14 +86,61 @@ package src
 		}
 		public static function animBackMenuOff(obj:DisplayObject, delay:Number = .3):void 
 		{
-			trace("animBackMenuOff");
 			TweenMax.to(obj, delay, {alpha:0,visible:false});
 			//obj.visible = false;
+		}
+		public static function shakeBtn(arr:Array):void{
+			var timeline1:TimelineLite = new TimelineLite();
+			var timeline2:TimelineLite = new TimelineLite();
+			var timeline3:TimelineLite = new TimelineLite();
+			var timeline4:TimelineLite = new TimelineLite();
+			for (var i:int = 0; i < arr.length; i++) 
+			{
+				//timeline.shiftChildren(.1);
+				for (var j:int = 0; j < 50; j++) 
+				{
+					timeline1.append(new TweenLite(arr[i], .05, {x:"-2"} ));				
+					timeline1.append(new TweenLite(arr[i], .05, {x:"2"} ));				
+					timeline1.append(new TweenLite(arr[i], .05, {x:"0"} ));
+					
+					
+				}
+								
+			}
+			
+			
+			
+		}
+		
+		public static function shake(shakeClip:DisplayObject, duration:Number = 8000, frequency:Number = 30, distance:Number = 2):void
+		{
+			var shakes:int = duration / frequency;
+			var shakeTimer:Timer = new Timer(frequency, shakes);
+			var startX:Number = shakeClip.x;
+			var startY:Number = shakeClip.y;
+
+			var shakeUpdate:Function = function(e:TimerEvent):void
+				{
+					shakeClip.x = startX + ( -distance / 2 + Math.random() * distance);
+					shakeClip.y = startY + ( -distance / 2 + Math.random() * distance); 
+				}
+
+			var shakeComplete:Function = function(e:TimerEvent):void
+				{
+					shakeClip.x = startX;
+					shakeClip.y = startY;
+					e.target.removeEventListener(TimerEvent.TIMER, shakeUpdate);
+					e.target.removeEventListener(TimerEvent.TIMER_COMPLETE, shakeComplete);
+				}
+
+			shakeTimer.addEventListener(TimerEvent.TIMER, shakeUpdate);
+			shakeTimer.addEventListener(TimerEvent.TIMER_COMPLETE, shakeComplete);
+
+			shakeTimer.start();
 		}
 		
 		static private function removeObj(obj:DisplayObject):void 
 		{
-			//trace("removeObj",obj);
 			if (obj!=null) 
 			{
 				if(obj.parent) {

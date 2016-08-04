@@ -17,7 +17,7 @@
 		private var _question:Question;
 		private var _debugName:String;
 		private var _cont:Sprite = new Sprite();
-		
+		private var _numClick:int = 0;
 		
 		public function StartClass() {
 					
@@ -43,17 +43,23 @@
 			_debugName = Opt.DEBUG_ANDROID;
 			//onResize();
 			//Opt.container.scaleX = Opt.container.scaleY = Opt.scale();
-			new LogoInfoArr();
+			//new LogoInfoArr();
 			_arrImage = new Array();
 			_question = new Question();
 			_cutTile = new CutTile();
+			_cutTile.init();
 			var mc:MovieClip=new MovieClip();
 			//mc.scaleX
-			for (var i:int = 0; i < 36; i++) 
+			/*for (var i:int = 0; i < 130; i++) 
 			{
 				_arrImage.push(_cutTile.getBitmap(i));				
 				
-			}
+			}*/
+			_arrImage = _cutTile.arrBitmap;
+			
+			
+			stage.addEventListener(MouseEvent.CLICK, cMouse);
+			
 			//addChild(_arrImage[12]);
 			Opt.arrImage = _arrImage;
 			SaveInfo.init();
@@ -64,6 +70,8 @@
 			//preloader.scaleX = preloader.scaleY = Opt.scale/2;
 			//preloader.x = Opt.SW / 2;
 			//preloader.y = Opt.SH / 2;
+			
+			trace(_arrImage);
 			_menuMc = new MenuMc();
 			Opt.container.addChild(_menuMc);
 			Opt.numRec = 10;
@@ -72,6 +80,13 @@
 			
 			//addChild(_cutTile.getBitmap(3));
 			//addChild(_cutTile.Draw(10));
+		}
+		
+		private function cMouse(e:MouseEvent):void 
+		{
+			//Opt.removeAll();
+			//Opt.container.addChild(_arrImage[_numClick]);
+			//_numClick++;
 		}
 		
 		

@@ -45,7 +45,6 @@ package
 				splashScreen.scaleX = hScale;
 				splashScreen.scaleY = hScale;
 			}
-			 trace("PRELOADER");
 			//Position splash screen
 			splashScreen.x = (stage.stageWidth - splashScreen.width) / 2;
 			splashScreen.y = (stage.stageHeight - splashScreen.height) / 2;
@@ -53,7 +52,6 @@ package
 		 
 		private function ioError(e:IOErrorEvent):void
 		{
-			trace(e.text);
 		}
 		 
 		private function progress(e:ProgressEvent):void

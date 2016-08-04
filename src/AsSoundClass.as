@@ -2,6 +2,10 @@
 {
 	import com.greensock.core.SimpleTimeline;
 	import flash.display.SimpleButton;
+	import flash.media.Sound;
+	import flash.media.SoundChannel;
+	import flash.media.SoundTransform;
+	import flash.media.SoundMixer;
 	/**
 	 * ...
 	 * @author Atoris
@@ -25,6 +29,19 @@
 			_bSound = !_bSound;
 			
 			SaveInfo.save(SaveInfo.SOUND, _bSound);
+			
+			var transform:SoundTransform;
+			
+			if (_bSound) 
+			{
+				transform=new SoundTransform(1,0);
+				SoundMixer.soundTransform=transform;
+			}else{
+				transform = new SoundTransform(0, 0);
+				SoundMixer.soundTransform=transform;
+				SoundMixer.stopAll();
+			}			
+			
 		}
 		static public function get bSound():Boolean 
 		{

@@ -15,7 +15,7 @@
 			//x = Opt.SW / 2;
 			//y = Opt.SH / 2;
 			
-			Opt.btnLNG(btn, "Меню");
+			//Opt.btnLNG(btn, "Меню");
 			btn.addEventListener(MouseEvent.CLICK, cMouse);
 			
 		}
@@ -27,10 +27,8 @@
 				Opt.numVideo--;
 			}else{
 				Opt.numVideo = 5;
-				AdMobClass.showNonSkippableVideo();
-				trace("ВИДЕО РЕКЛАМА");
+				//AdMobClass.showNonSkippableVideo();
 			}
-			trace(Opt.numVideo,"Opt.numVideo");
 			var menu:MenuMc = new MenuMc();
 			Opt.container.addChild(menu);
 			AsAnimations.transitionObj(Opt.container.getChildAt(0),menu);
