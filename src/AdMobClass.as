@@ -18,7 +18,7 @@ package src
 			var appKey:String = "4aa7522404cc1b600096912323618d39a889c86d47265d3c";
 			appodeal.disableLocationPermissionCheck();
 			appodeal.initialize(appKey,AdType.BANNER_BOTTOM|AdType.INTERSTITIAL|AdType.REWARDED_VIDEO|AdType.NON_SKIPPABLE_VIDEO);
-			appodeal.setTesting(true); 
+			//appodeal.setTesting(true); 
 		}
 		
 		public static function showBanner():void{

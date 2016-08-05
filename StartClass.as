@@ -8,7 +8,7 @@
 	import flash.events.MouseEvent;
 	import flash.display.StageScaleMode;
 	import flash.display.StageAlign;
-	
+	import flash.desktop.NativeApplication;
 	public class StartClass extends MovieClip {
 		
 		private var _menuMc:MenuMc;
@@ -24,23 +24,14 @@
 			init(0,0,0);
 		}
 		public function init(sw:Number,sh:Number,sc:Number):void{
-			//GoogleAnalitics.init();
-			if (sw==0) 
-			{
-				stage.scaleMode = StageScaleMode.NO_SCALE;
-				stage.align = StageAlign.TOP_LEFT;
-				onResize();
-			}else{
-				Opt.SW = sw;
-				Opt.SH = sh;
-				Opt.scale = sc;
-			}
+			GoogleAnalitics.init();
 			
-			addChild(_cont);
-			Opt.container = _cont;
+			
+			//addChild(_cont);
+			//Opt.container = _cont;
 			
 			//new Opt();
-			_debugName = Opt.DEBUG_ANDROID;
+			//_debugName = Opt.DEBUG_ANDROID;
 			//onResize();
 			//Opt.container.scaleX = Opt.container.scaleY = Opt.scale();
 			//new LogoInfoArr();
@@ -48,7 +39,7 @@
 			_question = new Question();
 			_cutTile = new CutTile();
 			_cutTile.init();
-			var mc:MovieClip=new MovieClip();
+			//var mc:MovieClip=new MovieClip();
 			//mc.scaleX
 			/*for (var i:int = 0; i < 130; i++) 
 			{
@@ -58,7 +49,7 @@
 			_arrImage = _cutTile.arrBitmap;
 			
 			
-			stage.addEventListener(MouseEvent.CLICK, cMouse);
+			//addEventListener(MouseEvent.CLICK, cMouse);
 			
 			//addChild(_arrImage[12]);
 			Opt.arrImage = _arrImage;
@@ -71,28 +62,34 @@
 			//preloader.x = Opt.SW / 2;
 			//preloader.y = Opt.SH / 2;
 			
-			trace(_arrImage);
+			
 			_menuMc = new MenuMc();
 			Opt.container.addChild(_menuMc);
 			Opt.numRec = 10;
 			
 			AdMobClass.showBanner();
 			
+			
+			
 			//addChild(_cutTile.getBitmap(3));
 			//addChild(_cutTile.Draw(10));
 		}
 		
+		
+		
 		private function cMouse(e:MouseEvent):void 
 		{
-			//Opt.removeAll();
-			//Opt.container.addChild(_arrImage[_numClick]);
-			//_numClick++;
+			Opt.removeAll();
+			Opt.container.addChild(_arrImage[_numClick]);
+			
+			_numClick++;
+			trace(_numClick);
 		}
 		
 		
 		private function onResize():void 
 		{
-			if (_debugName==Opt.DEBUG_ANDROID) 
+			/*if (_debugName==Opt.DEBUG_ANDROID) 
 			{
 				Opt.SW = stage.fullScreenWidth;
 				Opt.SH = stage.fullScreenHeight;
@@ -105,7 +102,7 @@
 			
 			Opt.scale = Math.max(Opt.SW / bg.width, Opt.SH / bg.height);
 			//bg.scaleX = bg.scaleY = Opt.scale;
-			
+			*/
 		}
 		
 		

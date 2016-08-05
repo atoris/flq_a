@@ -7,7 +7,7 @@
 		
 		
 		public function RecordMc() {
-			//GoogleAnalitics.getTrackView("ПРОИГРЫШ");
+			GoogleAnalitics.getTrackView("ТАБЛИЦА РЕКОРДОВ");
 			scaleX = scaleY = Opt.scale;
 			
 			x = Opt.SW / 2;
@@ -19,7 +19,7 @@
 		
 		private function cMouse(e:MouseEvent):void 
 		{
-			
+			AsSoundClass.playClick();
 			var men:MenuMc = new MenuMc();
 			Opt.container.addChild(men);
 			AsAnimations.transitionObj(this,men);

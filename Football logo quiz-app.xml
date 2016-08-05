@@ -18,7 +18,7 @@
 -->
 <application xmlns="http://ns.adobe.com/air/application/22.0">
   <id>alsial.game.footballlogoquiz</id>
-  <versionNumber>0.8.0</versionNumber>
+  <versionNumber>0.9.3</versionNumber>
   <versionLabel></versionLabel>
   <filename>Football logo quiz</filename>
   <description/>
@@ -33,7 +33,12 @@
     <aspectRatio>portrait</aspectRatio>
     <renderMode>gpu</renderMode>
     <autoOrients>false</autoOrients></initialWindow>
-  <icon/>
+  <icon>
+    <image36x36>res/ico/ic_36.png</image36x36>
+    <image48x48>res/ico/ic_48.png</image48x48>
+    <image72x72>res/ico/ic_72.png</image72x72>
+    <image96x96>res/ico/ic_96.png</image96x96>
+  </icon>
   <customUpdateUI>false</customUpdateUI>
   <allowBrowserInvocation>false</allowBrowserInvocation>
 	<android>
@@ -867,9 +872,59 @@
   
   
   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <extensions>
     <extensionID>com.appodeal.aneplugin</extensionID>
     <extensionID>com.appodeal.playservicesane</extensionID>
     <extensionID>com.appodeal.supportane</extensionID>
+    <extensionID>com.devactionscript.googleanalytics</extensionID>
   </extensions>
 </application>

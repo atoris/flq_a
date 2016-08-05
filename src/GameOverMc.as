@@ -9,7 +9,7 @@
 		
 		public function GameOverMc() {
 			// constructor code
-			//GoogleAnalitics.getTrackView("ПРОИГРЫШ");
+			GoogleAnalitics.getTrackView("ПРОИГРЫШ");
 			//scaleX = scaleY = Opt.scale;
 			
 			//x = Opt.SW / 2;
@@ -22,6 +22,7 @@
 		
 		private function cMouse(e:MouseEvent):void 
 		{
+			AsSoundClass.playClick();
 			if (Opt.numVideo!=1) 
 			{
 				Opt.numVideo--;

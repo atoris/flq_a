@@ -11,7 +11,7 @@ package src
 		
 		public function MoreGameMc() 
 		{
-			//GoogleAnalitics.getTrackView("ПРОИГРЫШ");
+			GoogleAnalitics.getTrackView("БОЛЬШЕ ИГР");
 			scaleX = scaleY = Opt.scale;
 			
 			x = Opt.SW / 2;
@@ -23,6 +23,7 @@ package src
 		
 		private function cMouse(e:MouseEvent):void 
 		{
+			AsSoundClass.playClick();
 			if (e.currentTarget==btn_menu) 
 			{
 				var men:MenuMc = new MenuMc();
@@ -31,6 +32,7 @@ package src
 			}
 			if (e.currentTarget==btn_simon) 
 			{
+				GoogleAnalitics.getTrackView("ПЕРЕХОД НА ИГРУ SIMON FOR ANDROID");
 				GoSite.GoMoreGame("air.alexandr.sirota.simonforandroid");
 			}
 		}

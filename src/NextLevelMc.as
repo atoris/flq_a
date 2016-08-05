@@ -10,7 +10,7 @@
 		private var _gameOver:Boolean;
 		public function NextLevelMc() {
 			// constructor code
-			//GoogleAnalitics.getTrackView("ПЕРЕХОД МЕЖДУ УРОВНЕЙ");
+			GoogleAnalitics.getTrackView("ПЕРЕХОД МЕЖДУ УРОВНЕЙ");
 			if (Opt.numRec!=1) 
 			{
 				Opt.numRec--;
@@ -49,6 +49,7 @@
 		
 		private function cMouseMessageBox(e:MouseEvent):void 
 		{
+			AsSoundClass.playClick();
 			if (e.currentTarget==messageBox.btn_ok) 
 			{				
 				removeAll();
@@ -61,6 +62,7 @@
 		
 		private function cMouse(e:MouseEvent):void 
 		{
+			AsSoundClass.playClick();
 			if (e.currentTarget==nextBtn) 
 			{
 				if (!_gameOver) 
@@ -79,6 +81,7 @@
 		}
 		private function cMouseTopMenu(e:MouseEvent):void 
 		{
+			AsSoundClass.playClick();
 			if (e.currentTarget==topMenu.btn_menu) 
 			{
 				if (!_gameOver) 
@@ -120,12 +123,14 @@
 			txt_name.text = name;
 			if (str=="Y") 
 			{
+				AsSoundClass.playY();
 				_gameOver = false;
 				txt1.text = "+ " + String((Opt.numCage * Opt.numCage) - num);
 				txt2.text = "+ " + String((Opt.numCage * Opt.numCage) - num);
 				//txt_info.text = "CELLS: " + String(num) + "/"+String((Opt.numCage*Opt.numCage))+"\n" + "SCORE + " + String((Opt.numCage*Opt.numCage) - num);
 				gotoAndStop(1);
 			}else{
+				AsSoundClass.playN();
 				_gameOver = true;
 				gotoAndStop(2);
 				

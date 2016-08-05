@@ -31,7 +31,8 @@
 			//tileBitmap =_arrRes;
 		}
 		public function init():void{
-			_arrRes = new Array(new Res.ENGLAND1(),new Res.ENGLAND2(),new Res.ENGLAND3(),new Res.ENGLAND4());
+			_arrRes = new Array( 	new Res.ENGLAND1(), new Res.ENGLAND2(), new Res.ENGLAND3(), new Res.ENGLAND4(),
+								new Res.ENGLAND5(), new Res.ENGLAND6(), new Res.ENGLAND7(), new Res.ENGLAND8());
 			
 			_arrBitmap = new Array();
 			tileSize=560;

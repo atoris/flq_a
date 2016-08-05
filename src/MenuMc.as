@@ -10,7 +10,7 @@
 		public static var bool:Boolean = false;
 		public function MenuMc() {
 			// constructor code
-			//GoogleAnalitics.getTrackView("МЕНЮ");
+			GoogleAnalitics.getTrackView("МЕНЮ");
 			AsSoundClass.init();
 			if (!AsSoundClass.bSound) 
 			{
@@ -25,9 +25,9 @@
 			y = Opt.SH / 2;
 			
 			
-			Opt.btnLNG(btn_1,"САЛАГА");
-			Opt.btnLNG(btn_2,"ФУТБОЛИСТ");
-			Opt.btnLNG(btn_3,"ТРЕНЕР");
+			Opt.btnLNG(btn_1,"ПРОСТО");
+			Opt.btnLNG(btn_2,"НОРМАЛЬНО");
+			Opt.btnLNG(btn_3,"СЛОЖНО");
 			
 			AsAnimations.onBtn([btn_1, btn_2, btn_3]);
 			TimerCl.destroy();
@@ -47,7 +47,7 @@
 		
 		private function cMouse(e:MouseEvent):void 
 		{
-			
+			AsSoundClass.playClick();
 			var more:MoreGameMc = new MoreGameMc();
 			var rec:RecordMc = new RecordMc();
 			

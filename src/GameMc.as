@@ -8,6 +8,7 @@
 	import com.greensock.TweenLite;
 	import com.greensock.TimelineLite;
 	import src.LogoInfoArr;
+	import flash.events.Event;
 	import src.Question;
 	import com.greensock.easing.*;
 	import com.greensock.plugins.*;
@@ -42,7 +43,7 @@
 		
 		
 		public function GameMc() {
-			//GoogleAnalitics.getTrackView("ИГРА");
+			GoogleAnalitics.getTrackView("ИГРА");
 			AsSoundClass.init();
 			if (!AsSoundClass.bSound) 
 			{
@@ -107,11 +108,17 @@
 				}
 				
 			}
-			
-			
+			NativeApplication.nativeApplication.addEventListener(Event.ACTIVATE, handleActivate, false, 0, true);    
+			NativeApplication.nativeApplication.addEventListener(Event.DEACTIVATE , handleDeactivate, false, 0, true);
 			NativeApplication.nativeApplication.addEventListener(KeyboardEvent.KEY_DOWN,checkKeypress);
 		}
-		
+		function handleActivate(event:Event):void {
+			TimerCl.play();
+		}
+		private function handleDeactivate(e:Event):void 
+		{
+			TimerCl.pause();
+		}
 		private function checkKeypress(e:KeyboardEvent):void 
 		{
 			if (e.keyCode==Keyboard.BACK) 
@@ -126,6 +133,7 @@
 		
 		private function cMouseMessageBox(e:MouseEvent):void 
 		{
+			AsSoundClass.playClick();
 			if (e.currentTarget==messageBox.btn_ok) 
 			{
 				
@@ -139,6 +147,7 @@
 		
 		private function cMouseTopMenu(e:MouseEvent):void 
 		{
+			AsSoundClass.playClick();
 			if (e.currentTarget==topMenu.btn_menu) 
 			{
 				messageBox.visible = true;
@@ -226,6 +235,7 @@
 		
 		private function cBtn(e:MouseEvent):void 
 		{
+			
 			if (_nextLevelMc==null) 
 			{
 				if (!TimerCl.bGameOver) 
@@ -280,6 +290,7 @@
 		
 		private function cMouse(e:MouseEvent):void 
 		{
+			AsSoundClass.playClick();
 			if (e.target.rotationY==-180) 
 			{
 				
