@@ -16,6 +16,7 @@
 			//y = Opt.SH / 2;
 			
 			//Opt.btnLNG(btn, "Меню");
+			Opt.btnLNG(btn, "ПЕРЕИГРАТЬ");
 			btn.addEventListener(MouseEvent.CLICK, cMouse);
 			
 		}

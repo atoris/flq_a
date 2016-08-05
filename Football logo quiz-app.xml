@@ -18,7 +18,7 @@
 -->
 <application xmlns="http://ns.adobe.com/air/application/22.0">
   <id>alsial.game.footballlogoquiz</id>
-  <versionNumber>0.9.3</versionNumber>
+  <versionNumber>1.0.0</versionNumber>
   <versionLabel></versionLabel>
   <filename>Football logo quiz</filename>
   <description/>
@@ -189,6 +189,7 @@
 		
 	</manifest>]]></manifestAdditions>
   </android>
+  
   
   
   
